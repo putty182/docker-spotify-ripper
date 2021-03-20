@@ -10,5 +10,7 @@
 /music
 ````
 
-## build
+## run
+````
+docker run -it -v "${PWD}/config:/config" -v "${PWD}/music:/music" putty182/spotify-ripper
 ````

@@ -1,9 +1,15 @@
 #!/bin/sh
 set -u
 rm -Rf 
-touch /config/playlists.txt
-ln -sf /config/ ~/.spotify-ripper
-pip3 install --upgrade git+https://github.com/putty182/spotify-ripper
+
+if ! [ -f /config/playlists.txt ]; then
+    touch /config/playlists.txt
+fi
+if ! [ -f /config/config.ini ]; then
+    touch /config/config.ini
+fi
+
+ln -sfT /config/ ~/.spotify-ripper
 
 if [ -z "${0}" ]; then
     PYTHONIOENCODING=UTF-8 spotify-ripper /config/playlists.txt
