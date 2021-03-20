@@ -6,16 +6,16 @@ RUN sed -i -e's/ main/ main contrib non-free/g' /etc/apt/sources.list && \
     apt-get -qq update && apt-get -qq upgrade && \
     apt-get -qq install -y \
         wget gnupg git \
-        lame faac fdkaac ffmpeg flac opus-tools sox vorbis-tools \
+        lame \
         python3 python3-pip && \
     wget -q -O - https://apt.mopidy.com/mopidy.gpg | apt-key add - && \
     wget -q -O /etc/apt/sources.list.d/mopidy.list https://apt.mopidy.com/buster.list && \
     apt-get -qq update && \
     apt-get -qq install -y \
         libspotify12 libspotify-dev && \
+    pip3 install --upgrade git+https://github.com/putty182/spotify-ripper && \
+    apt-get remove --autoremove --purge -y gcc libspotify-dev git && \
     apt-get -qq clean
-
-RUN pip3 install --upgrade git+https://github.com/putty182/spotify-ripper
 
 # the scripts
 COPY root/start.sh /start.sh
