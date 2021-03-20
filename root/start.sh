@@ -10,6 +10,7 @@ if ! [ -f /config/config.ini ]; then
     touch /config/config.ini
 fi
 
+rmdir ~/.spotify-ripper
 ln -sfT /config/ ~/.spotify-ripper
 
 PYTHONIOENCODING=UTF-8 spotify-ripper /config/playlists.txt
